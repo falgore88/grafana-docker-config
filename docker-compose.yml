@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana:8.2.6
+    container_name: grafana
+    restart: always
+    user: '0'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - '3000:3000'
+    volumes:
+      - './grafana_data:/var/lib/grafana'
+    environment:
+      - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}
+      - GF_INSTALL_PLUGINS=${GF_INSTALL_PLUGINS}
+      - GF_INSTALL_IMAGE_RENDERER_PLUGIN=true
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    restart: always
+    user: '0'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8083:8083"
+      - "8086:8086"
+    volumes:
+      - './influxdb.yml:/etc/influxdb2/config.yml'
+      - './influxdb_data:/var/lib/influxdb2'
+    environment:
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${DOCKER_INFLUXDB_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${DOCKER_INFLUXDB_BUCKET}

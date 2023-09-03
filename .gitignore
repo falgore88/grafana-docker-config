@@ -1,0 +1,5 @@
+.vscode/
+.data/
+grafana_data/
+influxdb_data/
+.env
