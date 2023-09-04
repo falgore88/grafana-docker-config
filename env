@@ -1,5 +1,2 @@
-INFLUXDB_USERNAME=admin
-INFLUXDB_PASSWORD=admin
-
 GF_SERVER_ROOT_URL=http://host.docker.internal:3005/
 GF_INSTALL_PLUGINS=grafana-clock-panel
