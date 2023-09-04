@@ -25,14 +25,14 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
-      - "8083:8083"
+      - "8088:8088"
       - "8086:8086"
     volumes:
-      - './influxdb.conf:/etc/influxdb/config.conf'
+      - './influxdb.conf:/etc/influxdb/influxdb.conf:ro'
       - './influxdb_data:/var/lib/influxdb'
-    environment:
-      - INFLUXDB_REPORTING_DISABLED=true
-      - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
-      - INFLUXDB_USERNAME=${INFLUXDB_USERNAME}
-      - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
-      - INFLUXDB_AUTH_ENABLED=true
+    # environment:
+    #   - INFLUXDB_REPORTING_DISABLED=true
+    #   - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
+    #   - INFLUXDB_USERNAME=${INFLUXDB_USERNAME}
+    #   - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
+    #   - INFLUXDB_AUTH_ENABLED=true
