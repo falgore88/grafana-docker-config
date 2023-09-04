@@ -9,13 +9,14 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
-      - '3000:3000'
+      - '3005:3005'
     volumes:
       - './grafana_data:/var/lib/grafana'
     environment:
       - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL}
       - GF_INSTALL_PLUGINS=${GF_INSTALL_PLUGINS}
       - GF_INSTALL_IMAGE_RENDERER_PLUGIN=true
+      - GF_SERVER_HTTP_PORT=3005
   influxdb:
     image: influxdb:2.7
     container_name: influxdb

@@ -4,5 +4,5 @@ INFLUXDB_ORG=org
 INFLUXDB_BUCKET=system
 INFLUXDB_RETENTION=1y
 
-GF_SERVER_ROOT_URL=http://host.docker.internal:3000/
+GF_SERVER_ROOT_URL=http://host.docker.internal:3005/
 GF_INSTALL_PLUGINS=grafana-clock-panel
