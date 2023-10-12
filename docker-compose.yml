@@ -18,11 +18,18 @@ services:
       GF_SERVER_ROOT_URL: ${GF_SERVER_ROOT_URL}
       GF_INSTALL_PLUGINS: ${GF_INSTALL_PLUGINS}
       GF_INSTALL_IMAGE_RENDERER_PLUGIN: true
-      GF_CAPTURE: true
+      GF_UNIFIED_ALERTING_CAPTURE: true
       GF_UPLOAD_EXTERNAL_IMAGE_STORAGE: false
       GF_SERVER_HTTP_PORT: 3005
   renderer:
     image: grafana/grafana-image-renderer:latest
+    links:
+      - grafana
+    environment:
+      - ENABLE_METRICS=true
+      - RENDERING_MODE=clustered # для возможности одновременной обработки большого количества изображений
+      - RENDERING_CLUSTERING_MODE=context
+      - RENDERING_CLUSTERING_MAX_CONCURRENCY=6
     ports:
       - 8081
   influxdb:
